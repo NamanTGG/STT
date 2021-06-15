@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis</title>
+    <style>
+        h2{color:crimson}
+
+        body{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <h2>Jarvis - Speech To Text</h2>
+    <button id='btn' onclick='recognition.start()'>Start Recognition</button>
+    <h1 id="result"></h1>
+
+    <script>
+
+        const btn = document.getElementById('btn')
+        const result = document.getElementById('result')
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.onstart = function(){
+            console.log('Listening . . .');
+        }
+        recognition.onresult = function(event){
+            var text = event.results[0][0].transcript;
+            console.log(text);
+            document.getElementById('result').innerHTML = text;
+        }
+    </script>
+</body>
+</html>
